@@ -23,10 +23,10 @@ export default function Food(props: FoodProps) {
   const [isAvailable, setIsAvailable] = useState(false);
   const [foods, setFoods] = useState<Food[]>([]);
 
-  useEffect(() => {
-    const { available } = props.food;    
-    setIsAvailable(available);
-  }, []);
+  // useEffect(() => {
+  //   const { available } = props.food;    
+  //   setIsAvailable(available);
+  // }, []);
 
   useEffect(() => {
     async function load() {
@@ -55,12 +55,13 @@ export default function Food(props: FoodProps) {
   }
 
   return (      
+      <>
         {foods.map(food => (
-          <Container available={isAvailable}  key={food.id}>       
-         
-            <header key={food.id}>
+          <Container available={isAvailable}  key={food.id}>                
+            <header>
               <img src={food.image} alt={food.name} />
             </header>
+
             <section className="body">
               <h2>{food.name}</h2>
               <p>{food.description}</p>
@@ -68,6 +69,7 @@ export default function Food(props: FoodProps) {
                 R$ <b>{food.price}</b>
               </p>
             </section>
+
             <section className="footer">
               <div className="icon-container">
                 <button
@@ -107,5 +109,6 @@ export default function Food(props: FoodProps) {
          
           </Container>    
         ))}
+     </>
   );
 };
